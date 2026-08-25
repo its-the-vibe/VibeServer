@@ -5,8 +5,6 @@ services:
     pull_policy: always
     ports:
       - "${PORT}:8080"
-    env_file:
-      - .env
     volumes:
       - ./html:/app/dist:ro
     read_only: true
