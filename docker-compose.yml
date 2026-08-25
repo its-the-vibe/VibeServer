@@ -8,5 +8,6 @@ services:
     volumes:
       - ./html:/app/dist:ro
     read_only: true
-    # Point to your external Redis instance via config.yaml
     restart: on-failure:10
+    environment:
+      DIST_DIR: /app/dist
