@@ -15,8 +15,10 @@ RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -trimpath -ldfl
 # ── Runtime stage (distroless) ────────────────────────────────────────────────
 FROM gcr.io/distroless/static-debian13:nonroot
 
-COPY --from=builder /vibeserver /vibeserver
+WORKDIR app
+
+COPY --from=builder /vibeserver /app/vibeserver
 
 USER nonroot:nonroot
 
-ENTRYPOINT ["/vibeserver"]
+ENTRYPOINT ["/app/vibeserver"]
